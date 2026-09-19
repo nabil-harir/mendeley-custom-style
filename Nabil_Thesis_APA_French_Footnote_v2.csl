@@ -129,7 +129,7 @@
   </macro>
 
   <citation>
-    <layout suffix=".">
+    <layout delimiter="; " suffix=".">
       <text macro="reference"/>
     </layout>
   </citation>
