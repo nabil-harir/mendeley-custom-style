@@ -100,15 +100,19 @@
 
   <macro name="accessed">
     <choose>
-      <if variable="accessed">
-        <group>
-          <text value="Consulté le "/>
-          <date variable="accessed">
-            <date-part name="day" suffix=" "/>
-            <date-part name="month" form="long" suffix=" "/>
-            <date-part name="year"/>
-          </date>
-        </group>
+      <if type="webpage post post-weblog" match="any">
+        <choose>
+          <if variable="accessed">
+            <group>
+              <text value="Consulté le "/>
+              <date variable="accessed">
+                <date-part name="day" suffix=" "/>
+                <date-part name="month" form="long" suffix=" "/>
+                <date-part name="year"/>
+              </date>
+            </group>
+          </if>
+        </choose>
       </if>
     </choose>
   </macro>
