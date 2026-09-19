@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" version="1.0" class="note" default-locale="fr-FR">
+  <info>
+    <title>Nabil Thesis – APA French Footnote Custom V3</title>
+    <id>http://www.zotero.org/styles/nabil-thesis-apa-french-footnote-custom-v3</id>
+    <link href="http://www.zotero.org/styles/nabil-thesis-apa-french-footnote-custom-v3" rel="self"/>
+    <updated>2026-09-19T14:35:00+00:00</updated>
+    <author>
+      <name>Nabil Harir</name>
+    </author>
+    <category citation-format="note"/>
+    <category field="social_science"/>
+    <summary>APA-inspired French full-reference footnote style with access date at the end.</summary>
+    <rights license="http://creativecommons.org/licenses/by-sa/3.0/"/>
+    </info>
+
+  <locale xml:lang="fr">
+    <terms>
+      <term name="no date">s. d.</term>
+    </terms>
+  </locale>
+
+  <macro name="author">
+    <names variable="author">
+      <name name-as-sort-order="all" sort-separator=", " initialize-with=". "
+            delimiter=", " delimiter-precedes-last="always" and="symbol"/>
+      <substitute>
+        <names variable="editor"/>
+        <text variable="publisher"/>
+        <text variable="title"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <macro name="issued">
+    <choose>
+      <if variable="issued">
+        <date variable="issued">
+          <date-part name="year"/>
+        </date>
+      </if>
+      <else>
+        <text term="no date"/>
+      </else>
+    </choose>
+  </macro>
+
+  <macro name="title">
+    <choose>
+      <if type="book graphic motion_picture report thesis webpage post post-weblog document" match="any">
+        <text variable="title" font-style="italic"/>
+      </if>
+      <else>
+        <text variable="title"/>
+      </else>
+    </choose>
+  </macro>
+
+  <macro name="secondary">
+    <choose>
+      <if type="article-journal article-magazine article-newspaper" match="any">
+        <group delimiter=", ">
+          <text variable="container-title" font-style="italic"/>
+          <group delimiter="">
+            <text variable="volume" font-style="italic"/>
+            <text variable="issue" prefix="(" suffix=")"/>
+          </group>
+          <text variable="page"/>
+        </group>
+      </if>
+      <else-if type="chapter paper-conference entry-encyclopedia entry-dictionary" match="any">
+        <group delimiter=", ">
+          <text variable="container-title" font-style="italic"/>
+          <text variable="page"/>
+        </group>
+      </else-if>
+      <else-if type="book report thesis" match="any">
+        <group delimiter=". ">
+          <text variable="volume" prefix="Vol. "/>
+          <text variable="publisher"/>
+        </group>
+      </else-if>
+      <else-if type="webpage post post-weblog" match="any">
+        <text variable="container-title" font-style="italic"/>
+      </else-if>
+    </choose>
+  </macro>
+
+  <macro name="locator">
+    <choose>
+      <if variable="DOI">
+        <text variable="DOI" prefix="https://doi.org/"/>
+      </if>
+      <else-if variable="URL">
+        <text variable="URL"/>
+      </else-if>
+    </choose>
+  </macro>
+
+  <macro name="accessed">
+    <choose>
+      <if type="webpage post post-weblog" match="any">
+        <choose>
+          <if variable="accessed">
+            <group>
+              <text value="Consulté le "/>
+              <date variable="accessed">
+                <date-part name="day" suffix=" "/>
+                <date-part name="month" form="long" suffix=" "/>
+                <date-part name="year"/>
+              </date>
+            </group>
+          </if>
+        </choose>
+      </if>
+    </choose>
+  </macro>
+
+  <macro name="reference">
+    <group delimiter=". ">
+      <text macro="author"/>
+      <text macro="issued" prefix="(" suffix=")"/>
+      <text macro="title"/>
+      <text macro="secondary"/>
+      <text macro="locator"/>
+      <text macro="accessed"/>
+    </group>
+  </macro>
+
+  <citation>
+    <layout delimiter="; " suffix=".">
+      <text macro="reference"/>
+    </layout>
+  </citation>
+
+  <bibliography hanging-indent="true" entry-spacing="0" line-spacing="1">
+    <sort>
+      <key macro="author"/>
+      <key macro="issued"/>
+      <key variable="title"/>
+    </sort>
+    <layout suffix=".">
+      <text macro="reference"/>
+    </layout>
+  </bibliography>
+</style>
