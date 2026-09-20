@@ -129,7 +129,20 @@
 
   <citation>
     <layout delimiter="; " suffix=".">
-      <text macro="reference"/>
+      <choose>
+        <if position="ibid">
+          <text value="Ibid."/>
+        </if>
+        <else-if position="ibid-with-locator">
+          <group delimiter=", ">
+            <text value="Ibid."/>
+            <text variable="locator"/>
+          </group>
+        </else-if>
+        <else>
+          <text macro="reference"/>
+        </else>
+      </choose>
     </layout>
   </citation>
 
